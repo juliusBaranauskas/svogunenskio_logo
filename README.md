@@ -1,0 +1,1 @@
+# svogunenskio_logo
