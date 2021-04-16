@@ -33,7 +33,6 @@ export const Canvas: React.FC<Props> = ({background_color}) => {
     const [onionImg, setOnionImg] = useState<HTMLImageElement | undefined>(undefined);
 
     useEffect(() => {
-        console.log('pleaseexplatin');
         setPos({ posX: (paintingCanvas.current()?.width)/2, posY: (paintingCanvas.current()?.height)/2, dir: 0});
     }, [paintingCanvas])
 
@@ -66,12 +65,15 @@ export const Canvas: React.FC<Props> = ({background_color}) => {
         }
     }, [pos, onionImg]);
 
+    const showInvalidCmdTip = () => {
+        alert('invalid command, click HELP to see cmd list');
+    }
+
     const executeCommand = () => {
         const cmdText = (document.getElementById('commandInput') as HTMLInputElement).value;
-        console.log(cmdText);
 
         if (!cmdText) {
-            alert('invalid command, click help to see cmd list');
+            showInvalidCmdTip();
             return;
         }
 
@@ -102,7 +104,7 @@ export const Canvas: React.FC<Props> = ({background_color}) => {
                 console.log(stepsInt);
             }
             else {
-                alert('invalid command, click help to see cmd list');
+                showInvalidCmdTip();
             }
         }
         if (cmdText.startsWith('kairėn') || cmdText.startsWith('kairen')) {
@@ -119,7 +121,7 @@ export const Canvas: React.FC<Props> = ({background_color}) => {
                 setPos({posX: 0, posY: 0, dir: degreesInt});
             }
             else {
-                alert('invalid command, click help to see cmd list');
+                showInvalidCmdTip();
             }
         }
         if (cmdText.startsWith('dešinėn') || cmdText.startsWith('desinen')) {
@@ -136,7 +138,7 @@ export const Canvas: React.FC<Props> = ({background_color}) => {
                 setPos({posX: 0, posY: 0, dir: degreesInt});
             }
             else {
-                alert('invalid command, click help to see cmd list');
+                showInvalidCmdTip();
             }
         }
         if (cmdText.startsWith('namo')) {
